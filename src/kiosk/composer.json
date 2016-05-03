@@ -1,0 +1,6 @@
+{
+    "name" : "smidgen/kiosk",
+    "require" : {
+        "twig/twig": "1.*"
+    }
+}

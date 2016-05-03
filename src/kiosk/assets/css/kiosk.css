@@ -1,0 +1,231 @@
+/*--------------------------------------------------------------------------------
+ * Global
+ *--------------------------------------------------------------------------------*/
+
+body {}
+
+h2 {
+   text-align: center;
+}
+
+.bgcolor {
+   background-color: #333;
+}
+
+.panel {
+   border-radius: 10px;
+   margin-bottom: 2px;
+}
+
+.panel .panel-heading {
+   border-top-left-radius: 10px;
+   border-top-right-radius: 10px;
+   background-color: #aae;
+}
+
+.panel-body {
+   border-bottom-left-radius: 10px;
+   border-bottom-right-radius: 10px;
+   background-color: #FCFBE3;
+   padding: 0;
+}
+
+.img-frame img {
+   position: relative;   /* Necessary to offset the image within the parent div in order to center it */
+   height: 100%;         /* Scale to the height of the container */
+   margin: auto;
+   padding: 0;
+}
+
+
+#main h2 {
+   margin: .1em;
+}
+
+#main div.row {
+   height: 100%;
+   padding: .5em .1em;
+}
+
+#main div.row div.col-sm-6 {
+   padding: .5em .1em;
+}
+
+
+/*--------------------------------------------------------------------------------
+ * The Updates
+ *--------------------------------------------------------------------------------*/
+#updates {
+   height: 100%;
+}
+
+#updates div.panel {
+}
+
+#updates div.panel-heading {
+   padding: .5em .5em;
+}
+
+#updates div.panel-heading h4 {
+   margin: 0;
+}
+
+#updates div.panel-body p {
+   display: none;
+   padding: .1em .5em;
+   margin-bottom: 0;
+}
+
+
+
+
+/*--------------------------------------------------------------------------------
+ * The Gallery
+ *--------------------------------------------------------------------------------*/
+
+#gallery {
+   height: 94%;
+   display: block;
+}
+
+#gallery div.container-fluid {
+   padding-top: 0;
+   padding-bottom: 0;
+}
+
+#gallery div.container-fluid div.row {
+   display: none;
+}
+
+
+
+
+/*--------------------------------------------------------------------------------
+ * The Thumbnails
+ *--------------------------------------------------------------------------------*/
+#thumbnail-bar {
+   padding: 0;
+   border: none;
+   background-color: #333;
+
+}
+
+
+#thumbnails {
+   display: inline-block;
+   height: 48px;
+   width: 80%;
+   background-color: #222;
+   padding: 0;
+   overflow: hidden;
+   white-space: nowrap;
+}
+
+#thumbnails img {
+   height: 100%;
+   width: auto;
+   opacity: .5;
+}
+
+#thumbnails img.selected {
+   border: 1px solid red;
+   opacity: 1;
+}
+
+
+/*--------------------------------------------------------------------------------
+ * The Footer
+ *--------------------------------------------------------------------------------*/
+#footer {
+   font-size: large;
+}
+
+
+
+
+
+/*--------------------------------------------------------------------------------
+ * The "Manage Gallery Images" Modal
+ *--------------------------------------------------------------------------------*/
+
+#manageImageModal .img-frame {
+   height: 150px;
+}
+
+#manageImageModal .img-frame img {
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
+
+/*--------------------------------------------------------------------------------
+ * Media Queries
+ --------------------------------------------------------------------------------*/
+@media (min-width: 600px) {
+
+   #gallery div.container-fluid div.row {
+	  display: block;
+	  padding-top: 0;
+   }
+
+   #gallery div.container-fluid div.row div.col-sm-6 {
+	  padding: 0 .5em;
+	  margin: 0;
+   }
+
+   #gallery div.container-fluid div.row div.col-sm-6 div.img-frame {
+	  padding: 0;
+	  margin: auto;
+	  overflow: hidden;
+
+	  background-color: #333;
+	  border: none;
+   }
+
+   #gallery .img-frame:first-of-type {
+	  margin-left: .5em;
+   }
+
+   #gallery div.container-fluid div.row div.col-sm-6 div.img-frame {
+	  height: 310px;
+   }
+
+   #thumbnails {
+	  width: 90%;
+   }
+
+   #manageImageModal .img-frame {
+	  height: 310px;
+   }
+
+}
+
+@media (min-width: 992px) {
+   body {
+	  overflow: hidden;
+   }
+   #main {
+      height: 708px;
+      overflow: hidden;
+   }
+
+   #updates div.panel {
+	  margin-bottom: .5em;
+   }
+
+   #updates div.panel:last-of-type {
+	  margin-bottom: .1em;
+   }
+
+   #updates div.panel-body p {
+	  display: block;
+   }
+
+   #thumbnails {
+	  width: 100%;
+   }
+   #thumbnail-bar a.scroll-control {
+	  display: none;
+   }
+}
