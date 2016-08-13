@@ -13,47 +13,17 @@
             <div class="row">
 
                 <!-- Daily Class Updates -->
-
                 <div class="col-sm-6" id="updates">
-                    <!-- Summer-only All-Class Updates -->
-                    <div class="panel panel-default" id="update-summer">
-                        <div class="panel-heading">
-                            <h4 id="title-123">Camelot School Daily Highlights</h4>
+                    {% for panel in panels %}
+                        <div class="panel panel-default" id="{{ panel.id }}">
+                            <div class="panel-heading">
+                                <h4 id="{{ panel.titleId }}">{{ panel.title }}</h4>
+                            </div>
+                            <div class="panel-body" id="{{ panel.contentId }}">
+                                <p>{{ panel.content }}</p>
+                            </div>
                         </div>
-                        <div class="panel-body" id="content-summer"><p>Retrieving latest update....</p></div>
-                    </div>
-
-                    <!-- Updates for the 1-2-3 Class -->
-                    <div class="panel panel-default" id="update-123">
-                        <div class="panel-heading">
-                            <h4 id="title-123">Updates for the 1-2-3 Class</h4>
-                        </div>
-                        <div class="panel-body" id="content-123"><p>Retrieving latest update....</p></div>
-                    </div>
-
-                    <!-- Updates for the A-B-C Class -->
-                    <div class="panel panel-default" id="update-abc">
-                        <div class="panel-heading">
-                            <h4 id="title-abc">Updates for the A-B-C Class</h4>
-                        </div>
-                        <div class="panel-body" id="content-abc"><p>Retrieving latest update....</p></div>
-                    </div>
-
-                    <!-- Updates for the Pre-K Class -->
-                    <div class="panel panel-default" id="update-prek">
-                        <div class="panel-heading">
-                            <h4 id="title-prek">Updates for the Pre-K Class</h4>
-                        </div>
-                        <div class="panel-body" id="content-prek"><p>Retrieving latest update....</p></div>
-                    </div>
-
-                    <!-- Updates for the Kindergarten Class -->
-                    <div class="panel panel-default" id="update-kindergarten">
-                        <div class="panel-heading">
-                            <h4 id="title-kindergarten">Updates for the Kindergarten Class</h4>
-                        </div>
-                        <div class="panel-body" id="content-kindergarten"><p>Retrieving latest update....</p></div>
-                    </div>
+                    {% endfor %}
                 </div>
 
 
