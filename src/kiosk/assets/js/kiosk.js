@@ -12,8 +12,8 @@
     var $Updates;   // The section of the kiosk containing the daily updates
     $Updates = $('div#updates');   //
 
-    var UpdatePanels;   // The set of all update
-    UpdatePanels = $('.updatePanel');
+    var $UpdatePanels;   // The set of all update
+    $UpdatePanels = $Updates.find('div.panel');
 
     $(document).ready(function () {
 
@@ -138,20 +138,6 @@
         });
 
 
-        /*
-         if ( typeof summer === 'undefined' ) {
-         $( 'div#update-summer' ).remove( );
-         } else {
-         $( 'div#update-123' ).remove( );
-         $( 'div#update-abc' ).remove( );
-         $( 'div#update-prek' ).remove( );
-         $( 'div#update-kindergarten' ).remove( );
-         }
-         */
-        $Updates.each(function (index, element) {
-            console.log(index);
-        });
-
         getDevFeed();   // Comment out during pre-production and production
         //getFeed( 'http://www.camelotschool.net/rss' );   // Comment out during development
         getThumbnails();
@@ -212,25 +198,13 @@
         var lorem = new Lorem;
         lorem.type = Lorem.TEXT;
         lorem.query = '1p';
-        setTimeout(function () {
-            $('#content-123').html(lorem.createLorem());
-            scaleUpdates();
-        }, 2000);
 
-        setTimeout(function () {
-            $('#content-abc').html(lorem.createLorem());
-            scaleUpdates();
-        }, 4000);
-
-        setTimeout(function () {
-            $('#content-prek').html(lorem.createLorem());
-            scaleUpdates();
-        }, 6000);
-
-        setTimeout(function () {
-            $('#content-kindergarten').html(lorem.createLorem());
-            scaleUpdates();
-        }, 8000);
+        $UpdatePanels.each(function(index, element) {
+            setTimeout(function() {
+                $(element).find( '.panel-body p').html( lorem.createLorem());
+                scaleUpdates();
+            }, 2000 * (index + 1));
+        });
         return;
     }
 

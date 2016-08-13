@@ -15,11 +15,11 @@
         <!-- Daily Class Updates -->
         <div class="col-sm-6" id="updates">
             {% for panel in panels %}
-                <div class="panel panel-default" id="{{ panel.id }}">
+                <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h4 id="{{ panel.titleId }}">{{ panel.title }}</h4>
+                        <h4>{{ panel.title }}</h4>
                     </div>
-                    <div class="panel-body" id="{{ panel.contentId }}">
+                    <div class="panel-body">
                         <p>{{ panel.content }}</p>
                     </div>
                 </div>
