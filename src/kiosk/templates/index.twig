@@ -1,103 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Camelot School</title>
-        <link rel="stylesheet" href="css/bootstrap.css" media="all">
-        <link rel="stylesheet" href="css/kiosk.css">
-    </head>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Camelot School</title>
+    <link rel="stylesheet" href="css/bootstrap.css" media="all">
+    <link rel="stylesheet" href="css/kiosk.css">
+</head>
 
-    <body class="bgcolor">
-        <!-- The main content, containing the updates on the left and the gallery on the right -->
-        <div class="container-fluid" id="main">
-            <div class="row">
+<body class="bgcolor">
+<!-- The main content, containing the updates on the left and the gallery on the right -->
+<div class="container-fluid" id="main">
+    <div class="row">
 
-                <!-- Daily Class Updates -->
-                <div class="col-sm-6" id="updates">
-                    {% for panel in panels %}
-                        <div class="panel panel-default" id="{{ panel.id }}">
-                            <div class="panel-heading">
-                                <h4 id="{{ panel.titleId }}">{{ panel.title }}</h4>
-                            </div>
-                            <div class="panel-body" id="{{ panel.contentId }}">
-                                <p>{{ panel.content }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
+        <!-- Daily Class Updates -->
+        <div class="col-sm-6" id="updates">
+            {% for panel in panels %}
+                <div class="panel panel-default" id="{{ panel.id }}">
+                    <div class="panel-heading">
+                        <h4 id="{{ panel.titleId }}">{{ panel.title }}</h4>
+                    </div>
+                    <div class="panel-body" id="{{ panel.contentId }}">
+                        <p>{{ panel.content }}</p>
+                    </div>
                 </div>
+            {% endfor %}
+        </div>
 
 
-                <!-- The Gallery -->
-                <div class="col-sm-6" id="gallery">
-                    <div class="container-fluid">
-                        <div class="row" id="upper">
-                            <div class="col-sm-6">
-                                <div class="panel panel-default img-frame">
-                                    <a href='#manageImageModal' data-toggle='modal'><img src="" id="img0" /></a>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-6">
-                                <div class="panel panel-default img-frame">
-                                    <a href="#manageImageModal" data-toggle='modal'><img src="" id="img1" /></a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" id="lower">
-                            <div class="col-sm-6">
-                                <div class="panel panel-default img-frame">
-                                    <a href="#manageImageModal" data-toggle='modal'><img src="" id="img2" /></a>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="panel panel-default img-frame">
-                                    <a href="#manageImageModal" data-toggle='modal'><img src="" id="img3" /></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="well well-sm" id="thumbnail-bar">
-                            <a href="#" class="scroll-control scroll-left"><span class="glyphicon glyphicon-arrow-left"></span></a>
-                            <div id="thumbnails"></div>
-                            <a href="#" class="scroll-control scroll-right"><span class="glyphicon glyphicon-arrow-right"></span></a>
+        <!-- The Gallery -->
+        <div class="col-sm-6" id="gallery">
+            <div class="container-fluid">
+                <div class="row" id="upper">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default img-frame">
+                            <a href='#manageImageModal' data-toggle='modal'><img src="" id="img0"/></a>
                         </div>
                     </div>
+
+                    <div class="col-sm-6">
+                        <div class="panel panel-default img-frame">
+                            <a href="#manageImageModal" data-toggle='modal'><img src="" id="img1"/></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="lower">
+                    <div class="col-sm-6">
+                        <div class="panel panel-default img-frame">
+                            <a href="#manageImageModal" data-toggle='modal'><img src="" id="img2"/></a>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="panel panel-default img-frame">
+                            <a href="#manageImageModal" data-toggle='modal'><img src="" id="img3"/></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="well well-sm" id="thumbnail-bar">
+                    <a href="#" class="scroll-control scroll-left"><span class="glyphicon glyphicon-arrow-left"></span></a>
+
+                    <div id="thumbnails"></div>
+                    <a href="#" class="scroll-control scroll-right"><span
+                                class="glyphicon glyphicon-arrow-right"></span></a>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="modal fade" id="manageImageModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button class="close" data-dismiss="modal">&times;</button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="img-frame">
-                            <img src="" id="modalImg" />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="delete" name="delete" class="btn btn-warning" type="button"><img src="img/delete.ico" alt="Delete" /></button>
-                        <button id='clockwise' class="btn btn-normal" type="button"><img src="img/clockwise-arrow.ico" alt="Clockwise" /></button>
-                        <button id='counterclockwise' class="btn btn-normal" type="button"><img src="img/counterclockwise-arrow.ico" alt="Counter-clockwise" /></button>
-                        <button class="btn btn-default" data-dismiss="modal" type="button"><img src="img/cancel.ico" alt="Close" /></button>
-                    </div>
+<div class="modal fade" id="manageImageModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="img-frame">
+                    <img src="" id="modalImg"/>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button id="delete" name="delete" class="btn btn-warning" type="button"><img src="img/delete.ico"
+                                                                                             alt="Delete"/></button>
+                <button id='clockwise' class="btn btn-normal" type="button"><img src="img/clockwise-arrow.ico"
+                                                                                 alt="Clockwise"/></button>
+                <button id='counterclockwise' class="btn btn-normal" type="button"><img
+                            src="img/counterclockwise-arrow.ico" alt="Counter-clockwise"/></button>
+                <button class="btn btn-default" data-dismiss="modal" type="button"><img src="img/cancel.ico"
+                                                                                        alt="Close"/></button>
+            </div>
         </div>
+    </div>
+</div>
 
-        <div class="well well-sm" id="footer">div#footer</div>
+<div class="well well-sm" id="footer">div#footer</div>
 
-        <script src="js/jquery-1.11.0.min.js"></script>
-        <script src="js/bootstrap.js"></script>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
 
-        <!-- For dev only! -->
-        <script src="js/lorem.js"></script>
+<!-- For dev only! -->
+<script src="js/lorem.js"></script>
 
-        {% if summer  %}
-        <script type="text/javascript">var summer = true;</script>;
-        {% endif %}
-        <script type="text/javascript" src="js/kiosk.js"></script>
-    </body>
+{% if summer %}
+    <script type="text/javascript">var summer = true;</script>;
+{% endif %}
+<script type="text/javascript" src="js/kiosk.js"></script>
+</body>
 </html>
