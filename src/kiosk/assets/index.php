@@ -25,33 +25,30 @@ echo $template->render([
     'cache'  => false,
     'panels' => [
         [
-            'id'        => 'update-123',
-            'titleId'   => 'title-123',
-            'title'     => 'Updates for the 123 class',
-            'contentId' => 'content-123',
-            'content'   => 'Retrieving latest update...'
+            'id'      => 'update-123',
+            'tag'     => '123',
+            'title'   => 'Updates for the 123 class',
+            'content' => 'Retrieving latest update...'
         ],
         [
-            'id'        => 'update-abc',
-            'titleId'   => 'title-abc',
-            'title'     => 'Updates for the ABC class',
-            'contentId' => 'content-abc',
-            'content'   => 'Retrieving latest update...'
-        ],
-        [
-            'id'        => 'update-prek',
-            'titleId'   => 'title-prek',
-            'title'     => 'Updates for the Pre-K class',
-            'contentId' => 'content-prek',
-            'content'   => 'Retrieving latest update...'
-        ],
-        [
-            'id'        => 'update-lunch',
-            'titleId'   => 'title-lunch',
-            'title'     => 'Lunch',
-            'contentId' => 'content-lunch',
-            'content'   => 'Retrieving latest update...'
+            'id'      => 'update-abc',
+            'tag'     => 'abc',
+            'title'   => 'Updates for the ABC class',
+            'content' => 'Retrieving latest update...'
         ]
+
+//        [
+//            'id'      => 'update-prek',
+//            'tag'     => 'prek',
+//            'title'   => 'Updates for the Pre-K class',
+//            'content' => 'Retrieving latest update...'
+//        ],
+//        [
+//            'id'      => 'update-lunch',
+//            'tag'     => 'kindergarten',
+//            'title'   => 'Lunch',
+//            'content' => 'Retrieving latest update...'
+//        ]
     ]
 ]);
 

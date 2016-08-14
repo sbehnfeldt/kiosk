@@ -15,7 +15,7 @@
         <!-- Daily Class Updates -->
         <div class="col-sm-6" id="updates">
             {% for panel in panels %}
-                <div class="panel panel-default">
+                <div class="panel panel-default" data-tag="{{ panel.tag }}">
                     <div class="panel-heading">
                         <h4>{{ panel.title }}</h4>
                     </div>

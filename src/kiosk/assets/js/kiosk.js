@@ -169,6 +169,7 @@
             if (tag != 'summer') {
                 tags.push(tag);
             }
+
             if (match_categories($this.find('category'), tags)) {
                 if (( null == FeedItems[tag] ) || ($this.find("link").text() != FeedItems[tag].link )) {
                     console.log(new Date() + ": Found new " + tag + " update.");
@@ -211,7 +212,7 @@
 
 // Update the page with the most recent ABC and Pre-K updates
     function getFeed(rssurl) {
-        //console.log( new Date( ) + ": Getting feed" );
+        console.log( new Date( ) + ": Getting RSS feed" );
         $.ajax({
             url: 'proxy.php?url=' + rssurl,
             type: 'get',
@@ -220,15 +221,12 @@
 
             success: function (data, textStatus, jqXHR) {
                 console.log(new Date() + ": RSS feed retrieved");
-                var $xml = $(data);
-                if (typeof summer === 'undefined') {
-                    searchForNewUpdate($(data), '123', $('#title-123'), $('#content-123'));
-                    searchForNewUpdate($(data), 'abc', $('#title-abc'), $('#content-abc'));
-                    searchForNewUpdate($(data), 'pre-k', $('#title-prek'), $('#content-prek'));
-                    searchForNewUpdate($(data), 'kindergarten', $('#title-kindergarten'), $('#content-kindergarten'));
-                } else {
-                    searchForNewUpdate($(data), 'summer', $('#title-summer'), $('#content-summer'));
-                }
+                $UpdatePanels.each(function(index, element) {
+                    var $tag = $(element).data( 'tag').toString();
+                    var $title = $(element).find( 'div.panel-heading h4');
+                    var $content = $(element).find('div.panel-body p')
+                    searchForNewUpdate($(data), $tag, $title, $content  );
+                });
 
                 setTimeout(function () {
                     getFeed(rssurl);
