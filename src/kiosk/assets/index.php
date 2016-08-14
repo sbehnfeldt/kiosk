@@ -10,6 +10,11 @@ if ( ! isset($_SESSION['picture_idx'])) {
 if ( ! isset($_SESSION['announcement_idx'])) {
     $_SESSION['announcement_idx'] = -1;
 }
+
+$config = file_get_contents( 'config.json' );
+$json = json_decode( $config, true );
+$panels = array_filter( $json['panels'], function($panel) { return $panel['active']; });
+
 require_once '../vendor/twig/twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
 
@@ -19,36 +24,11 @@ $twig   = new Twig_Environment($loader, array(
     'cache' => false,
 ));
 
+
 $template = $twig->loadTemplate('index.twig');
 //echo $template->render( array( 'cache' => false, 'summer' => isset( $_GET[ 'summer' ])));
 echo $template->render([
     'cache'  => false,
-    'panels' => [
-        [
-            'id'      => 'update-123',
-            'tag'     => '123',
-            'title'   => 'Updates for the 123 class',
-            'content' => 'Retrieving latest update...'
-        ],
-        [
-            'id'      => 'update-abc',
-            'tag'     => 'abc',
-            'title'   => 'Updates for the ABC class',
-            'content' => 'Retrieving latest update...'
-        ]
-
-//        [
-//            'id'      => 'update-prek',
-//            'tag'     => 'prek',
-//            'title'   => 'Updates for the Pre-K class',
-//            'content' => 'Retrieving latest update...'
-//        ],
-//        [
-//            'id'      => 'update-lunch',
-//            'tag'     => 'kindergarten',
-//            'title'   => 'Lunch',
-//            'content' => 'Retrieving latest update...'
-//        ]
-    ]
+    'panels' => $panels
 ]);
 

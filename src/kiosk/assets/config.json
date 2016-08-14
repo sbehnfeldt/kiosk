@@ -1,0 +1,33 @@
+{
+    "panels": [
+        {
+            "id": "update-123",
+            "tag": "123",
+            "title": "Updates for the 123 class",
+            "content": "Retrieving latest update...",
+            "active" : true
+        },
+        {
+            "id": "update-abc",
+            "tag": "abc",
+            "title": "Updates for the ABC class",
+            "content": "Retrieving latest update...",
+            "active" : true
+        },
+
+        {
+            "id": "update-prek",
+            "tag": "prek",
+            "title": "Updates for the Pre-K class",
+            "content": "Retrieving latest update...",
+            "active" : true
+        },
+        {
+            "id": "update-lunch",
+            "tag": "kindergarten",
+            "title": "Lunch",
+            "content": "Retrieving latest update...",
+            "active" : false
+        }
+    ]
+}
