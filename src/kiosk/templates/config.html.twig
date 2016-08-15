@@ -2,14 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css" media="all">
+    <link rel="stylesheet" href="css/kiosk.css">
     <title>Config</title>
+
 </head>
 <body>
-<ul>
+<table>
+    <thead>
+    <tr>
+        <th>Active</th>
+        <th>ID</th>
+        <th>Tag</th>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+    </thead>
+    <tbody id="updatePanelsConfig">
     {% for panel in panels %}
-    <li>{{ panel.id }}</li>
+        <tr>
+            <td><input type="checkbox" {% if panel.active %}checked{% endif %} </td>
+            <td>{{ panel.id }}</td>
+            <td>{{ panel.tag }}</td>
+            <td>{{ panel.title }}</td>
+            <td>{{ panel.content }}</td>
+        </tr>
     {% endfor %}
+
+    </tbody>
+</table>
+<ul>
 </ul>
 
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/config.js"></script>
 </body>
 </html>
