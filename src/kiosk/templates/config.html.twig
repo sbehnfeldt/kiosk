@@ -20,7 +20,7 @@
     <tbody id="updatePanelsConfig">
     {% for panel in panels %}
         <tr>
-            <td><input type="checkbox" {% if panel.active %}checked{% endif %} </td>
+            <td><input type="checkbox" {% if panel.active %}checked{% endif %} /></td>
             <td>{{ panel.tag }}</td>
             <td>{{ panel.title }}</td>
             <td>{{ panel.content }}</td>
