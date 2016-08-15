@@ -12,7 +12,6 @@
     <thead>
     <tr>
         <th>Active</th>
-        <th>ID</th>
         <th>Tag</th>
         <th>Title</th>
         <th>Content</th>
@@ -22,7 +21,6 @@
     {% for panel in panels %}
         <tr>
             <td><input type="checkbox" {% if panel.active %}checked{% endif %} </td>
-            <td>{{ panel.id }}</td>
             <td>{{ panel.tag }}</td>
             <td>{{ panel.title }}</td>
             <td>{{ panel.content }}</td>

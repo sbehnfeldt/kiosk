@@ -1,14 +1,12 @@
 {
     "panels": [
         {
-            "id": "update-123",
             "tag": "123",
             "title": "Updates for the 123 class",
             "content": "Retrieving latest update...",
             "active" : true
         },
         {
-            "id": "update-abc",
             "tag": "abc",
             "title": "Updates for the ABC class",
             "content": "Retrieving latest update...",
@@ -16,18 +14,29 @@
         },
 
         {
-            "id": "update-prek",
             "tag": "prek",
             "title": "Updates for the Pre-K class",
             "content": "Retrieving latest update...",
             "active" : true
         },
         {
-            "id": "update-lunch",
             "tag": "kindergarten",
-            "title": "Lunch",
+            "title": "Updates for the kindergarten class",
+            "content": "Retrieving latest update...",
+            "active" : false
+        },
+        {
+            "tag": "summer",
+            "title": "Today at Camelot",
+            "content": "Retrieving latest update...",
+            "active" : false
+        },
+        {
+            "tag": "lunch",
+            "title": "Today for lunch",
             "content": "Retrieving latest update...",
             "active" : false
         }
+
     ]
 }

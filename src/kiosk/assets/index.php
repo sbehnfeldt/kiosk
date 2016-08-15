@@ -25,7 +25,7 @@ $twig   = new Twig_Environment($loader, array(
 ));
 
 
-$template = $twig->loadTemplate('index.twig');
+$template = $twig->loadTemplate('index.html.twig');
 //echo $template->render( array( 'cache' => false, 'summer' => isset( $_GET[ 'summer' ])));
 echo $template->render([
     'cache'  => false,
