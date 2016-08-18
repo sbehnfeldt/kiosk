@@ -10,7 +10,21 @@
         var init = function(selector) {
             $table = $(selector);
             $table.on('change', 'input[type=checkbox]', function() {
-                console.log( $(this).prop('checked'));
+                $.ajax({
+                    "url" : "update.php",
+                    "data" : {
+                        "name" : $(this).attr( "name" ),
+                        "checked" : $(this).prop("checked") ? true : false
+                    },
+
+                    "dataType" : "json",
+                    "success" : function() {
+                        alert("Success" );
+                    },
+                    "error": function() {
+                        alert("error");
+                    }
+                });
             });
         };
 

@@ -1,0 +1,9 @@
+{
+    "require" : {
+        "phing/phing" : "2.*",
+        "composer/composer" : "*"
+    },
+    "require-dev" : {
+        "twig/twig" : "~1.0"
+    }
+}
