@@ -19,10 +19,10 @@
 
                     "dataType" : "json",
                     "success" : function() {
-                        alert("Success" );
+                        console.log("Success" );
                     },
                     "error": function() {
-                        alert("error");
+                        alert("Error updating config file");
                     }
                 });
             });
