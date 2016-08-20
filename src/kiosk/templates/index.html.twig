@@ -99,11 +99,11 @@
 <script src="js/bootstrap.js"></script>
 
 <!-- For dev only! -->
+{% if dev == true %}
 <script src="js/lorem.js"></script>
+<script>var dev = true;</script>
+{% endif  %}
 
-{% if summer %}
-    <script type="text/javascript">var summer = true;</script>;
-{% endif %}
 <script type="text/javascript" src="js/kiosk.js"></script>
 </body>
 </html>

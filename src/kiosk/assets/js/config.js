@@ -11,7 +11,7 @@
             $table = $(selector);
             $table.on('change', 'input[type=checkbox]', function() {
                 $.ajax({
-                    "url" : "update.php",
+                    "url" : "update",
                     "data" : {
                         "name" : $(this).attr( "name" ),
                         "checked" : $(this).prop("checked") ? true : false

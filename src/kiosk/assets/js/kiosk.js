@@ -138,8 +138,11 @@
         });
 
 
-        getDevFeed();   // Comment out during pre-production and production
-        //getFeed( 'http://www.camelotschool.net/rss' );   // Comment out during development
+        if (typeof dev == 'undefined') {
+            getFeed('http://www.camelotschool.net/rss');   // Comment out during development
+        } else {
+            getDevFeed();   // Comment out during pre-production and production
+        }
         getThumbnails();
         nextImage(0);
         tick();
@@ -200,9 +203,9 @@
         lorem.type = Lorem.TEXT;
         lorem.query = '1p';
 
-        $UpdatePanels.each(function(index, element) {
-            setTimeout(function() {
-                $(element).find( '.panel-body p').html( lorem.createLorem());
+        $UpdatePanels.each(function (index, element) {
+            setTimeout(function () {
+                $(element).find('.panel-body p').html(lorem.createLorem());
                 scaleUpdates();
             }, 2000 * (index + 1));
         });
@@ -212,20 +215,21 @@
 
 // Update the page with the most recent ABC and Pre-K updates
     function getFeed(rssurl) {
-        console.log( new Date( ) + ": Getting RSS feed" );
+        console.log(new Date() + ": Getting RSS feed");
         $.ajax({
-            url: 'proxy.php?url=' + rssurl,
+            url: 'proxy',
+            data: rssurl,
             type: 'get',
             dataType: 'xml',
             timeout: feedTimeout,
 
             success: function (data, textStatus, jqXHR) {
                 console.log(new Date() + ": RSS feed retrieved");
-                $UpdatePanels.each(function(index, element) {
-                    var $tag = $(element).data( 'tag').toString();
-                    var $title = $(element).find( 'div.panel-heading h4');
+                $UpdatePanels.each(function (index, element) {
+                    var $tag = $(element).data('tag').toString();
+                    var $title = $(element).find('div.panel-heading h4');
                     var $content = $(element).find('div.panel-body p')
-                    searchForNewUpdate($(data), $tag, $title, $content  );
+                    searchForNewUpdate($(data), $tag, $title, $content);
                 });
 
                 setTimeout(function () {
@@ -245,8 +249,9 @@
 
 // Retrieve the specified URL and place the content in the specified (local) element
     function fetchItem(url, element) {
-        $.ajax('proxy.php?url=' + url, {
+        $.ajax('proxy', {
             type: 'get',
+            data: url,
             dataType: 'html',
             timeout: itemTimeout,
             success: function (html, textStatus, jqXHR) {
@@ -328,9 +333,9 @@
     function getThumbnails() {
         //console.log( new Date( ) + ": Getting thumbnails" );
         $.ajax({
-            url: 'get.php',
+            url: 'getThumbnails',
             type: 'get',
-            data: 'thumbnails',
+            data: '',
             dataType: 'json',
             success: function (json, textStatus, jqXHR) {
                 if (json.error) {
@@ -361,9 +366,10 @@
         //console.log( "Next image" );
         if ($('body').width() >= 600) {
 
-            $.ajax('get.php', {
+            $.ajax('getPicture', {
                 'type': 'get',
-                'data': 'picture',
+                'data': '',
+                dataType: 'json',
                 success: function (json, textStatus, jqXHR) {
                     if (json.error) {
                         console.log("Error: " + json.message);
@@ -402,14 +408,18 @@
                         });
 
                         frame++;
-                        if (frame < 4) {
-                            setTimeout(function () {
-                                nextImage(frame)
-                            }, nextItemTimeout);
-                        } else {
-                            setTimeout(nextAnnouncement, nextItemTimeout);
-                        }
+
+                        //if (frame < 4) {
+                        //    setTimeout(function () {
+                        //        nextImage(frame)
+                        //    }, nextItemTimeout);
+                        //} else {
+                        //    setTimeout(nextAnnouncement, nextItemTimeout);
+                        //}
                     }
+                    setTimeout(function () {
+                        nextImage(frame%4)
+                    }, nextItemTimeout);
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     console.log(textStatus + ' : ' + errorThrown);
@@ -458,9 +468,11 @@
 // Display the next announcement in the Announcements panel
     function nextAnnouncement() {
 
-        $.ajax('get.php', {
+        $.ajax('get', {
             'type': 'get',
             'data': 'announcement',
+
+            'dataType': 'json',
             success: function (json, textStatus, jqXHR) {
                 if (json.error) {
                     console.log("Error: " + json.message);

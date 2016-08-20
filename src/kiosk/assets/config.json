@@ -1,4 +1,6 @@
 {
+    "webroot" : "/",
+    "dev": true,
     "panels": [
         {
             "tag": "123",
