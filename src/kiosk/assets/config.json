@@ -1,5 +1,5 @@
 {
-    "webroot" : "/",
+    "webroot" : "/kiosk/",
     "dev": true,
     "panels": [
         {

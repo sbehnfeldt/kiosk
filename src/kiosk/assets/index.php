@@ -22,9 +22,9 @@ function my_autoload($className)
 /********************************************************************************
  * Main Script
  ********************************************************************************/
-ini_set('error_log', '../logs/php_errors.log');
 define('INSTALL', dirname(__DIR__));
-session_save_path(INSTALL . '../sessions');
+ini_set('error_log', INSTALL . '/logs/php_errors.log');
+session_save_path(INSTALL . '/sessions');
 session_start();
 
 
@@ -48,7 +48,6 @@ $twig   = new Twig_Environment($loader, array(
 // Routing: explode the incoming URI along the slashes and process accordingly
 $webroot = $json['webroot'];
 $uri     = $_SERVER['REQUEST_URI'];
-
 $parts = explode('?', $uri);
 $path  = $parts[0];
 if (count($parts) > 1) {
@@ -62,18 +61,6 @@ $routes = explode('/', $routes);
 $route  = array_shift($routes);
 
 switch ($route) {
-    case 'css':
-        header('Content-Type: text/css');
-        header('Content-Length: ' . filesize($route . '/' . $routes[0]));
-        readfile($route . '/' . join('/', $routes));
-        exit;
-
-    case 'js':
-        header('Content-Type: application/javascript');
-        header('Content-Length: ' . filesize($route . '/' . $routes[0]));
-        readfile($route . '/' . $routes[0]);
-        exit;
-
     case '':
         $_SESSION['picture_idx']      = -1;
         $_SESSION['announcement_idx'] = -1;
