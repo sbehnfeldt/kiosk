@@ -1,0 +1,44 @@
+{
+    "webroot" : "/kiosk/",
+    "dev": true,
+    "panels": [
+        {
+            "tag": "123",
+            "title": "Updates for the 123 class",
+            "content": "Retrieving latest update...",
+            "active" : true
+        },
+        {
+            "tag": "abc",
+            "title": "Updates for the ABC class",
+            "content": "Retrieving latest update...",
+            "active" : true
+        },
+
+        {
+            "tag": "prek",
+            "title": "Updates for the Pre-K class",
+            "content": "Retrieving latest update...",
+            "active" : true
+        },
+        {
+            "tag": "kindergarten",
+            "title": "Updates for the kindergarten class",
+            "content": "Retrieving latest update...",
+            "active" : false
+        },
+        {
+            "tag": "summer",
+            "title": "Today at Camelot",
+            "content": "Retrieving latest update...",
+            "active" : false
+        },
+        {
+            "tag": "lunch",
+            "title": "Today for lunch",
+            "content": "Retrieving latest update...",
+            "active" : false
+        }
+
+    ]
+}

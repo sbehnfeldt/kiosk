@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="kiosk" default="buildDev" basedir="." description="Kiosk">
+
+    <property name="srcDir" value="${project.basedir}/src" />
+    <property name="buildDir" value="${project.basedir}/build" />
+    <property name="testDir" value="${project.basedir}/test" />
+    <property name="distDir" value="${project.basedir}/dist" />
+    <property name="webDir" value="${project.basedir}/web" />
+
+    <fileset dir="${srcDir}" id="srcfiles">
+        <include name="api/**" />
+        <include name="assets/**" />
+        <include name="install/**" />
+        <include name="pages/**" />
+        <include name="templates/**" />
+        <include name="config.json" />
+        <include name="composer.json" />
+    </fileset>
+
+    <target name="mkdirBuildDir" description="Make directory for build output">
+        <echo msg="Creating build directory..." />
+        <mkdir description="Create directory for output of 'build' target" dir="${buildDir}" />
+        <mkdir dir="${buildDir}/assets" />
+        <mkdir dir="${buildDir}/assets/gallery" />
+        <mkdir dir="${buildDir}/assets/gallery/thumbs" />
+        <mkdir dir="${buildDir}/logs" />
+        <mkdir dir="${buildDir}/sessions" />
+    </target>
+    
+
+    <target name="buildDev" description="Compile source files into development files" depends="mkdirBuildDir">
+        <echo msg="Building development files..." />
+        <copy description="Copy source files to build directory"  todir="${buildDir}">
+            <fileset refid="srcfiles" />
+        </copy>
+    </target>
+
+
+    <target name="build" description="Translate source files into output files" depends="mkdirBuildDir">
+        <echo msg="Building..." />
+        <copy description="Copy source files to build directory"  todir="${buildDir}">
+            <fileset refid="srcfiles" />
+        </copy>
+    </target>
+
+</project>

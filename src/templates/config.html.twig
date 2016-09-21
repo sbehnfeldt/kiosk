@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/bootstrap.css" media="all">
+    <link rel="stylesheet" href="css/kiosk.css">
+    <title>Config</title>
+
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>Active</th>
+        <th>Tag</th>
+        <th>Title</th>
+        <th>Content</th>
+    </tr>
+    </thead>
+    <tbody id="updatePanelsConfig">
+    {% for panel in panels %}
+        <tr>
+            <td><input type="checkbox" name="{{ panel.tag }}" {% if panel.active %}checked{% endif %} /></td>
+            <td>{{ panel.tag }}</td>
+            <td>{{ panel.title }}</td>
+            <td>{{ panel.content }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<hr />
+<input id="dev" type="checkbox" name="dev" {% if dev %}checked{% endif %}/> Development and Testing
+<hr />
+<a href="{{ webroot }}">Return to kiosk</a>
+
+<script src="js/jquery-1.11.0.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/config.js"></script>
+</body>
+</html>
