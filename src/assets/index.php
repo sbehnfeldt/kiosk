@@ -73,6 +73,8 @@ switch ($route) {
             'cache'  => false,
             'panels' => $panels,
             'dev'    => $json['dev'],
+            'webroot' => $json['webroot'],
+            'configLink' => $_SERVER['SERVER_ADDR'] != $_SERVER['REMOTE_ADDR']
         ]);
         break;
 

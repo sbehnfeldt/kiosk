@@ -18,5 +18,3 @@ echo $template->render([
     'cache'  => false,
     'panels' => $json[ 'panels']
     ]);
-
-?>
