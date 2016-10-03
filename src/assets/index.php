@@ -36,10 +36,8 @@ $config = file_get_contents(INSTALL . '/config.json');
 $json   = json_decode($config, true);
 
 
-require_once '../vendor/twig/twig/lib/Twig/Autoloader.php';
 Twig_Autoloader::register();
-
-$loader = new Twig_Loader_Filesystem('../templates');
+$loader = new Twig_Loader_Filesystem(INSTALL . '/templates');
 $twig   = new Twig_Environment($loader, array(
     //'cache' => '../../templates/cache',
     'cache' => false,
