@@ -471,7 +471,8 @@
 // Display the next announcement in the Announcements panel
     function nextAnnouncement() {
 
-        $.ajax( 'get', {
+        $.ajax({
+            'url' : 'get.php',
             'type': 'get',
             'data': 'announcement',
 

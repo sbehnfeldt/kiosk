@@ -93,16 +93,6 @@ switch ($route) {
         include('../api/update.php');
         break;
 
-    case 'get':
-        // Mobile devices seem to re-call this script before their .ajax calls (for some unknown reason),
-        // so we need to protect the session variables from getting re-initialized.
-        if ( ! isset($_SESSION[ 'picture_idx' ])) {
-            $_SESSION[ 'picture_idx' ] = -1;
-        }
-        if ( ! isset($_SESSION[ 'announcement_idx' ])) {
-            $_SESSION[ 'announcement_idx' ] = -1;
-        }
-        break;
     default:
         error_log($route);
 

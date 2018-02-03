@@ -2,6 +2,7 @@
 if ( empty( $_SERVER[ 'HTTP_X_REQUESTED_WITH' ]) || strtolower( $_SERVER[ 'HTTP_X_REQUESTED_WITH' ]) != 'xmlhttprequest' ) {
     die(0);
 }
+
 $extensions = array( 'jpg', 'jpeg', 'gif', 'png' );
 $files = scandir( 'gallery' );
 foreach ( $files as $i => $file ) {
@@ -11,6 +12,9 @@ foreach ( $files as $i => $file ) {
     }
 }
 sort( $files );
+
+session_save_path('../sessions');
+session_start();
 $_SESSION[ 'picture_idx' ]++;
 if ( $_SESSION[ 'picture_idx' ] >= count( $files )) {
     $_SESSION[ 'picture_idx' ] = 0;
