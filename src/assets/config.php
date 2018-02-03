@@ -18,3 +18,15 @@ echo $template->render([
     'cache'  => false,
     'panels' => $json[ 'panels']
     ]);
+
+
+//$template = $twig->loadTemplate('config.html.twig');
+//$panels   = array_filter($json[ 'panels' ], function ($panel) {
+//    return $panel[ 'active' ];
+//});
+//echo $template->render([
+//    'cache'   => false,
+//    'webroot' => $json[ 'webroot' ],
+//    'dev'     => $json[ 'dev' ],
+//    'panels'  => $json[ 'panels' ]
+//]);

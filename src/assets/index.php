@@ -43,55 +43,17 @@ $twig   = new Twig_Environment($loader, array(
     'cache' => false,
 ));
 
-// Routing: explode the incoming URI along the slashes and process accordingly
-$webroot = $json[ 'webroot' ];
-$uri     = $_SERVER[ 'REQUEST_URI' ];
-$parts   = explode('?', $uri);
-$path    = $parts[ 0 ];
-if (count($parts) > 1) {
-    $qString = $parts[ 1 ];
-} else {
-    $qString = '';
-}
-
-$routes = substr($path, strlen($webroot));
-$routes = explode('/', $routes);
-$route  = array_shift($routes);
-
-switch ($route) {
-    case '':
-        $_SESSION[ 'picture_idx' ]      = -1;
-        $_SESSION[ 'announcement_idx' ] = -1;
-        $template                       = $twig->loadTemplate('index.html.twig');
-        $panels                         = array_filter($json[ 'panels' ],
-            function ($panel) {
-                return $panel[ 'active' ];
-            });
-        echo $template->render([
-            'cache'      => false,
-            'panels'     => $panels,
-            'dev'        => $json[ 'dev' ],
-            'webroot'    => $json[ 'webroot' ],
-            'configLink' => $_SERVER[ 'SERVER_ADDR' ] != $_SERVER[ 'REMOTE_ADDR' ]
-        ]);
-        break;
-
-    case 'config':
-        $template = $twig->loadTemplate('config.html.twig');
-        $panels   = array_filter($json[ 'panels' ], function ($panel) {
-            return $panel[ 'active' ];
-        });
-        echo $template->render([
-            'cache'   => false,
-            'webroot' => $json[ 'webroot' ],
-            'dev'     => $json[ 'dev' ],
-            'panels'  => $json[ 'panels' ]
-        ]);
-        break;
-
-    default:
-        error_log($route);
-
-        break;
-}
-exit(0);
+$_SESSION[ 'picture_idx' ]      = -1;
+$_SESSION[ 'announcement_idx' ] = -1;
+$template                       = $twig->loadTemplate('index.html.twig');
+$panels                         = array_filter($json[ 'panels' ],
+    function ($panel) {
+        return $panel[ 'active' ];
+    });
+echo $template->render([
+    'cache'      => false,
+    'panels'     => $panels,
+    'dev'        => $json[ 'dev' ],
+    'webroot'    => $json[ 'webroot' ],
+    'configLink' => $_SERVER[ 'SERVER_ADDR' ] == $_SERVER[ 'REMOTE_ADDR' ]
+]);
