@@ -61,11 +61,12 @@
             var pathinfo = $( '#modalImg' ).attr( 'src' ).split( '/' );
             var imgName  = pathinfo.pop().split( '?' ).shift();
             $.ajax( {
-                url     : 'manage_gallery.php',
-                type    : 'post',
-                data    : 'rotate=&img=' + imgName + '&degrees=' + $( this ).data( 'degrees' ),
-                dataType: 'json',
-                success : function ( json, textStatus, jqXHR ) {
+                'url' : 'manage_gallery.php',
+                'type': 'post',
+                'data': 'rotate=&img=' + imgName + '&degrees=' + $( this ).data( 'degrees' ),
+
+                'dataType': 'json',
+                'success' : function ( json, textStatus, jqXHR ) {
                     if ( json.error ) {
                         alert( 'Failure: ' + json.message );
                     } else {
@@ -92,7 +93,7 @@
                     }
                     $( '#manageImageModal button' ).prop( 'disabled', false );
                 },
-                error   : function ( jqXHR, textStatus, errorThrown ) {
+                'error'   : function ( jqXHR, textStatus, errorThrown ) {
                     console.log( 'error: ' + errorThrown );
                     alert( 'error: ' + errorThrown );
                     $( '#manageImageModal button' ).prop( 'disabled', false );
@@ -109,11 +110,12 @@
             var pathinfo = $( '#modalImg' ).attr( 'src' ).split( '/' );
             var imgName  = pathinfo.pop().split( '?' ).shift();
             $.ajax( {
-                url     : 'manage_gallery.php',
-                type    : 'post',
-                data    : 'delete=&img=' + imgName,
-                dataType: 'json',
-                success : function ( json, textStatus, jqXHR ) {
+                'url' : 'manage_gallery.php',
+                'type': 'post',
+                'data': 'delete=&img=' + imgName,
+
+                'dataType': 'json',
+                'success' : function ( json, textStatus, jqXHR ) {
                     if ( json.error ) {
                         alert( 'error: ' + json.message );
                     } else {
@@ -122,7 +124,7 @@
                         $( '#manageImageModal button' ).prop( 'disabled', false );
                     }
                 },
-                error   : function ( jqXHR, textStatus, errorThrown ) {
+                'error'   : function ( jqXHR, textStatus, errorThrown ) {
                     console.log( 'error: ' + errorThrown );
                     alert( 'error: ' + errorThrown );
                     $( '#manageImageModal button' ).prop( 'disabled', false );
@@ -219,12 +221,12 @@
     function getFeed( rssurl ) {
         console.log( new Date() + ": Getting RSS feed: " + rssurl );
         $.ajax( {
-            url     : 'proxy.php?url=' + rssurl,
-            type    : 'get',
-            dataType: 'xml',
-            timeout : feedTimeout,
+            'url'    : 'proxy.php?url=' + rssurl,
+            'type'   : 'get',
+            'timeout': feedTimeout,
 
-            success: function ( data, textStatus, jqXHR ) {
+            'dataType': 'xml',
+            'success' : function ( data, textStatus, jqXHR ) {
                 console.log( new Date() + ": RSS feed retrieved" );
                 $UpdatePanels.each( function ( index, element ) {
                     var $tag     = $( element ).data( 'tag' ).toString();
@@ -232,37 +234,32 @@
                     var $content = $( element ).find( 'div.panel-body p' )
                     searchForNewUpdate( $( data ), $tag, $title, $content );
                 } );
-
-                //setTimeout(function () {
-                //    getFeed(rssurl);
-                //}, 300000);
             },
-
-            error: function ( jqXHR, textStatus, errorThrown ) {
+            'error'   : function ( jqXHR, textStatus, errorThrown ) {
                 console.log( new Date() + ' ERROR: ' + errorThrown );
                 feedTimeout += 5000;   // Wait 5 seconds longer next time
                 getFeed( rssurl );
             }
         } );
-        return;
     }
 
 
 // Retrieve the specified URL and place the content in the specified (local) element
     function fetchItem( url, element ) {
         console.log( 'Fetching item: ' + url );
-        $.ajax( 'proxy.php?url=' + url, {
-            type: 'get',
+        $.ajax( {
+            'url'    : 'proxy.php?url=' + url,
+            'type'   : 'get',
+            'timeout': itemTimeout,
 
-            dataType: 'html',
-            timeout : itemTimeout,
-            success : function ( html, textStatus, jqXHR ) {
+            'dataType': 'html',
+            'success' : function ( html, textStatus, jqXHR ) {
                 //console.log( html );
                 var $section = $( html ).find( 'section.entry-content' );
                 element.empty().append( $section );
                 scaleUpdates();
             },
-            error   : function ( jqXHR, textStatus, errorThrown ) {
+            'error'   : function ( jqXHR, textStatus, errorThrown ) {
                 console.log( 'error: ' + errorThrown );
                 element.text( "error: " + errorThrown );
                 fetchItem( url, element );
@@ -336,11 +333,12 @@
     function getThumbnails() {
         //console.log( new Date( ) + ": Getting thumbnails" );
         $.ajax( {
-            url     : 'getThumbnails.php',
-            type    : 'get',
-            data    : '',
-            dataType: 'json',
-            success : function ( json, textStatus, jqXHR ) {
+            'url' : 'getThumbnails.php',
+            'type': 'get',
+            'data': '',
+
+            'dataType': 'json',
+            'success' : function ( json, textStatus, jqXHR ) {
                 if ( json.error ) {
                     alert( "Error fetching thumbnails: " + json.message );
                     console.log( "Error fetching thumbnails: " + json.message );
@@ -357,7 +355,7 @@
                     }
                 }
             },
-            error   : function ( jqXHR, textStatus, errorThrown ) {
+            'error'   : function ( jqXHR, textStatus, errorThrown ) {
             }
         } );
 
@@ -369,11 +367,13 @@
         //console.log( "Next image" );
         if ( $( 'body' ).width() >= 600 ) {
 
-            $.ajax( 'getPicture.php', {
-                'type'  : 'get',
-                'data'  : '',
-                dataType: 'json',
-                success : function ( json, textStatus, jqXHR ) {
+            $.ajax( {
+                'url' : 'getPicture.php',
+                'type': 'get',
+                'data': '',
+
+                'dataType': 'json',
+                'success' : function ( json, textStatus, jqXHR ) {
                     if ( json.error ) {
                         console.log( "Error: " + json.message );
                     } else {
@@ -409,22 +409,13 @@
                                 getThumbnails();
                             }
                         } );
-
                         frame++;
-
-                        //if (frame < 4) {
-                        //    setTimeout(function () {
-                        //        nextImage(frame)
-                        //    }, nextItemTimeout);
-                        //} else {
-                        //    setTimeout(nextAnnouncement, nextItemTimeout);
-                        //}
                     }
                     setTimeout( function () {
                         nextImage( frame % 4 )
                     }, nextItemTimeout );
                 },
-                error   : function ( jqXHR, textStatus, errorThrown ) {
+                'error'   : function ( jqXHR, textStatus, errorThrown ) {
                     console.log( textStatus + ' : ' + errorThrown );
                     frame++;
                     if ( frame < 4 ) {
@@ -471,13 +462,13 @@
 // Display the next announcement in the Announcements panel
     function nextAnnouncement() {
 
-        $.ajax({
+        $.ajax( {
             'url' : 'get.php',
             'type': 'get',
             'data': 'announcement',
 
             'dataType': 'json',
-            success   : function ( json, textStatus, jqXHR ) {
+            'success' : function ( json, textStatus, jqXHR ) {
                 if ( json.error ) {
                     console.log( "Error: " + json.message );
                 } else {
@@ -491,7 +482,7 @@
 
                 }
             },
-            error     : function ( jqXHR, textStatus, errorThrown ) {
+            'error'   : function ( jqXHR, textStatus, errorThrown ) {
                 console.log( textStatus + ' : ' + errorThrown );
                 displayImages();
             }
