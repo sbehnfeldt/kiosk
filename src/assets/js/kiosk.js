@@ -336,7 +336,7 @@
     function getThumbnails() {
         //console.log( new Date( ) + ": Getting thumbnails" );
         $.ajax( {
-            url     : 'getThumbnails',
+            url     : 'getThumbnails.php',
             type    : 'get',
             data    : '',
             dataType: 'json',

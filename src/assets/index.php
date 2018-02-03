@@ -89,10 +89,6 @@ switch ($route) {
         ]);
         break;
 
-    case 'getThumbnails':
-        include('../api/getThumbnails.php');
-        break;
-
     case 'proxy':
         include('../api/proxy.php');
         break;
