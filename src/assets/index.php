@@ -89,10 +89,6 @@ switch ($route) {
         ]);
         break;
 
-    case 'proxy':
-        include('../api/proxy.php');
-        break;
-
     case 'update':
         include('../api/update.php');
         break;

@@ -154,7 +154,7 @@
         for ( var i = 0; i < $categories.length; i++ ) {
             //var idx = tags.indexOf($categories.eq(i).text().toLowerCase());
             var temp = $categories.eq( i ).text().toLowerCase();
-            var idx = tags.indexOf( temp );
+            var idx  = tags.indexOf( temp );
             if ( -1 != idx ) {
                 tags.splice( idx, 1 );
                 if ( 0 == tags.length ) {
@@ -217,10 +217,9 @@
 
 // Update the page with the most recent ABC and Pre-K updates
     function getFeed( rssurl ) {
-        console.log( new Date() + ": Getting RSS feed" );
+        console.log( new Date() + ": Getting RSS feed: " + rssurl );
         $.ajax( {
-            url     : 'proxy',
-            data    : rssurl,
+            url     : 'proxy.php?url=' + rssurl,
             type    : 'get',
             dataType: 'xml',
             timeout : feedTimeout,
@@ -251,13 +250,14 @@
 
 // Retrieve the specified URL and place the content in the specified (local) element
     function fetchItem( url, element ) {
-        $.ajax( 'proxy', {
-            type    : 'get',
-            data    : url,
+        console.log( 'Fetching item: ' + url );
+        $.ajax( 'proxy.php?url=' + url, {
+            type: 'get',
 
             dataType: 'html',
             timeout : itemTimeout,
             success : function ( html, textStatus, jqXHR ) {
+                //console.log( html );
                 var $section = $( html ).find( 'section.entry-content' );
                 element.empty().append( $section );
                 scaleUpdates();
