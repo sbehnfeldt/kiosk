@@ -1,32 +1,32 @@
-;(function(global, $) {
+;(function ( global, $ ) {
     'use strict';
 
     var $PanelsTable;
     var $DevCheckbox;
 
-    $PanelsTable = (function(){
+    $PanelsTable = (function () {
         var $table;
         var publicApi;
 
-        var init = function(selector) {
-            $table = $(selector);
-            $table.on('change', 'input[type=checkbox]', function() {
-                $.ajax({
-                    "url" : "update",
-                    "data" : {
-                        "name" : $(this).attr( "name" ),
-                        "checked" : $(this).prop("checked") ? true : false
+        var init = function ( selector ) {
+            $table = $( selector );
+            $table.on( 'change', 'input[type=checkbox]', function () {
+                $.ajax( {
+                    "url" : "update.php",
+                    "data": {
+                        "name"   : $( this ).attr( "name" ),
+                        "checked": $( this ).prop( "checked" ) ? true : false
                     },
 
-                    "dataType" : "json",
-                    "success" : function() {
-                        console.log("Success" );
+                    "dataType": "json",
+                    "success" : function () {
+                        console.log( "Success" );
                     },
-                    "error": function() {
-                        alert("Error updating config file");
+                    "error"   : function () {
+                        alert( "Error updating config file" );
                     }
-                });
-            });
+                } );
+            } );
         };
 
         publicApi = {
@@ -35,31 +35,31 @@
         return publicApi;
     })();
 
-    $DevCheckbox = (function() {
+    $DevCheckbox = (function () {
         var $checkbox;
         var publicApi;
 
-        var init = function(selector) {
-            $checkbox = $(selector);
-            $checkbox.on('change', function() {
-                console.log(this);
-                console.log($(this).prop('checked'));
-                $.ajax({
-                    "url": "update",
+        var init = function ( selector ) {
+            $checkbox = $( selector );
+            $checkbox.on( 'change', function () {
+                console.log( this );
+                console.log( $( this ).prop( 'checked' ) );
+                $.ajax( {
+                    "url" : "update.php",
                     "data": {
-                        "name": $(this).attr("name"),
-                        "checked": $(this).prop("checked") ? true : false
+                        "name"   : $( this ).attr( "name" ),
+                        "checked": $( this ).prop( "checked" ) ? true : false
                     },
 
                     "dataType": "json",
-                    "success": function () {
-                        console.log("Success");
+                    "success" : function () {
+                        console.log( "Success" );
                     },
-                    "error": function () {
-                        alert("Error updating config file");
+                    "error"   : function () {
+                        alert( "Error updating config file" );
                     }
-                });
-            });
+                } );
+            } );
         };
 
         publicApi = {
@@ -71,9 +71,9 @@
 
 
     // Document on-load handler
-    $(function() {
-        $PanelsTable.init('#updatePanelsConfig');
-        $DevCheckbox.init('#dev');
-    });
+    $( function () {
+        $PanelsTable.init( '#updatePanelsConfig' );
+        $DevCheckbox.init( '#dev' );
+    } );
 
-})(this, jQuery);
+})( this, jQuery );

@@ -94,8 +94,7 @@
 </div>
 
 
-
-{%  if configLink == true  %}
+{% if configLink == true %}
     <a href="{{ webroot }}config">Configure</a>
 {% endif %}
 <div class="well well-sm" id="footer">div#footer</div>
@@ -105,9 +104,9 @@
 
 <!-- For dev only! -->
 {% if dev == true %}
-<script src="js/lorem.js"></script>
-<script>var dev = true;</script>
-{% endif  %}
+    <script src="js/lorem.js"></script>
+    <script>var dev = true;</script>
+{% endif %}
 
 <script type="text/javascript" src="js/kiosk.js"></script>
 </body>

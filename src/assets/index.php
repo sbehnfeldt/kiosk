@@ -89,10 +89,6 @@ switch ($route) {
         ]);
         break;
 
-    case 'update':
-        include('../api/update.php');
-        break;
-
     default:
         error_log($route);
 
