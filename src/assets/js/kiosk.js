@@ -251,7 +251,6 @@
 
 // Retrieve the specified URL and place the content in the specified (local) element
     function fetchItem( url, element ) {
-        console.log( url );
         $.ajax( 'proxy', {
             type    : 'get',
             data    : url,
@@ -259,7 +258,6 @@
             dataType: 'html',
             timeout : itemTimeout,
             success : function ( html, textStatus, jqXHR ) {
-                console.log( html );
                 var $section = $( html ).find( 'section.entry-content' );
                 element.empty().append( $section );
                 scaleUpdates();
@@ -371,7 +369,7 @@
         //console.log( "Next image" );
         if ( $( 'body' ).width() >= 600 ) {
 
-            $.ajax( 'getPicture', {
+            $.ajax( 'getPicture.php', {
                 'type'  : 'get',
                 'data'  : '',
                 dataType: 'json',

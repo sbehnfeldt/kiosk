@@ -93,10 +93,6 @@ switch ($route) {
         include('../api/getThumbnails.php');
         break;
 
-    case 'getPicture':
-        include('../api/getPicture.php');
-        break;
-
     case 'proxy':
         include('../api/proxy.php');
         break;
