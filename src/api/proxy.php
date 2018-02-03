@@ -1,12 +1,12 @@
 <?php
+ini_set('error_log', '../logs/proxy.log');
+
 header('Content-type: application/xml');
 global $qString;
-$handle = fopen($qString, "r");
-
-if ($handle) {
-    while (!feof($handle)) {
-        $buffer = fgets($handle, 4096);
-        echo $buffer;
-    }
-    fclose($handle);
+if ( !$qString ) {
+    $qString = 'www.camelotschool.net/feed/';
 }
+
+$tempfile = 'rss.xml';
+exec( "wget -O $tempfile $qString" );
+exit(readfile($tempfile));
