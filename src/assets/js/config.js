@@ -22,7 +22,8 @@
                     "success" : function () {
                         console.log( "Success" );
                     },
-                    "error"   : function () {
+                    "error"   : function (xhr) {
+                        console.log( xhr );
                         alert( "Error updating config file" );
                     }
                 } );
@@ -42,8 +43,6 @@
         var init = function ( selector ) {
             $checkbox = $( selector );
             $checkbox.on( 'change', function () {
-                console.log( this );
-                console.log( $( this ).prop( 'checked' ) );
                 $.ajax( {
                     "url" : "update.php",
                     "data": {
