@@ -13,7 +13,7 @@ function my_autoload($className)
     }
     $fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
 
-    $require = INSTALL . DIRECTORY_SEPARATOR . 'classes' . DIRECTORY_SEPARATOR . $fileName;
+    $require = '../classes/' . $fileName;
     require $require;
 }
 
@@ -21,20 +21,22 @@ function my_autoload($className)
 /********************************************************************************
  * Main Script
  ********************************************************************************/
-define('INSTALL', dirname(__DIR__));
-ini_set('error_log', INSTALL . '/logs/php_errors.log');
-session_save_path(INSTALL . '/sessions');
+//define('INSTALL', dirname(__DIR__));
+ini_set('error_log', '../logs/php_errors.log');
+session_save_path('../sessions');
 session_start();
 
 $_SESSION[ 'picture_idx' ]      = -1;
 $_SESSION[ 'announcement_idx' ] = -1;
 
-require_once INSTALL . '/vendor/autoload.php';
+require_once '../vendor/autoload.php';
 spl_autoload_register('my_autoload');
 
-$config = json_decode( file_get_contents(INSTALL . '/config.json'), true );
+$config = json_decode(file_get_contents('../config.json'), true);
 
 
+define('INSTALL', dirname(__DIR__));
+error_log(INSTALL);
 Twig_Autoloader::register();
 $loader = new Twig_Loader_Filesystem(INSTALL . '/templates');
 $twig   = new Twig_Environment($loader, array(
