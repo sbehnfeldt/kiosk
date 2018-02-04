@@ -9,7 +9,7 @@
     $Updates = $( 'div#updates' );   //
 
     var $UpdatePanels;   // The set of all update
-    $UpdatePanels = $Updates.find( 'div.panel' );
+    $UpdatePanels = $Updates.find( 'article.panel' );
 
 
     /**
@@ -28,7 +28,7 @@
                 $UpdatePanels.each( function ( index, element ) {
                     var $tag     = $( element ).data( 'tag' ).toString();
                     var $title   = $( element ).find( 'div.panel-heading h4' );
-                    var $content = $( element ).find( 'div.panel-body p' )
+                    var $content = $( element ).find( 'section.panel-body p' )
                     searchForNewUpdate( $( xml ), $tag, $title, $content );
                 } );
             },
@@ -129,11 +129,11 @@
      */
     function toggleUpdatePanel() {
         if ( $( 'body' ).width() < 768 ) {
-            if ( $( this ).closest( 'div.panel' ).find( 'div.panel-body p' ).is( ':visible' ) ) {
-                $( this ).closest( 'div.panel' ).find( 'div.panel-body p' ).hide( 400 );
+            if ( $( this ).closest( 'article.panel' ).find( 'section.panel-body p' ).is( ':visible' ) ) {
+                $( this ).closest( 'article.panel' ).find( 'section.panel-body p' ).hide( 400 );
             } else {
-                $( 'div#updates div.panel-body p:visible' ).hide( 400 );
-                $( this ).closest( 'div.panel' ).find( 'div.panel-body p' ).show( 400 );
+                $( 'div#updates section.panel-body p:visible' ).hide( 400 );
+                $( this ).closest( 'article.panel' ).find( 'section.panel-body p' ).show( 400 );
             }
         }
     }
@@ -144,40 +144,70 @@
      */
     function scaleUpdates() {
         // Don't scale if the updates are hidden (ie, small devices)
-        if ( $( 'div#updates div.panel-body p:visible' ).length == 0 ) {
+        if ( $( 'div#updates section.panel-body p:visible' ).length == 0 ) {
             return;
         }
         var max;     // Height of the content container; set in CSS file
         var height;  // Height of the content; must be calculated
         max    = $( 'div#updates' ).height();
         height = $( 'div#updates h2' ).height();
-        $( 'div#updates div.panel' ).each( function ( index, element ) {
+        $( 'div#updates article.panel' ).each( function ( index, element ) {
             height = height + $( this ).height();
         } );
 
         // Scale up
         while ( height < max ) {
-            var h1 = parseFloat( $( 'div#updates div.panel-body p' ).css( 'font-size' ) );
+            var h1 = parseFloat( $( 'div#updates section.panel-body p' ).css( 'font-size' ) );
             h      = h1 + 1;
             h      = h + 'px';
-            $( 'div#updates div.panel-body p' ).css( 'font-size', h );
+            $( 'div#updates section.panel-body p' ).css( 'font-size', h );
             height = $( 'div#updates h2' ).height();
-            $( 'div#updates div.panel' ).each( function ( index, element ) {
+            $( 'div#updates article.panel' ).each( function ( index, element ) {
                 height = height + $( this ).height();
             } );
         }
 
         // Scale down
         while ( height > .98 * max ) {
-            var h = parseFloat( $( 'div#updates div.panel-body p' ).css( 'font-size' ) );
+            var h = parseFloat( $( 'div#updates section.panel-body p' ).css( 'font-size' ) );
             h     = h - 1;
             h     = h + 'px';
-            $( 'div#updates div.panel-body p' ).css( 'font-size', h );
+            $( 'div#updates section.panel-body p' ).css( 'font-size', h );
             height = $( 'div#updates h2' ).height();
-            $( 'div#updates div.panel' ).each( function ( index, element ) {
+            $( 'div#updates article.panel' ).each( function ( index, element ) {
                 height = height + $( this ).height();
             } );
         }
+    }
+
+// Display the next announcement in the Announcements panel
+    function nextAnnouncement() {
+
+        $.ajax( {
+            'url' : 'get.php',
+            'type': 'get',
+            'data': 'announcement',
+
+            'dataType': 'json',
+            'success' : function ( json ) {
+                if ( json.error ) {
+                    console.log( "Error: " + json.message );
+                } else {
+                    //console.log( "Success: " + json.src.length );
+                    if ( json.src.length ) {
+                        displayAnnouncements( json.src );
+                    } else {
+                        //console.log( "No announcements" );
+                        nextImage( 0 );
+                    }
+
+                }
+            },
+            'error'   : function ( xhr, textStatus, errorThrown ) {
+                console.log( textStatus + ' : ' + errorThrown );
+                displayImages();
+            }
+        } );
     }
 
     // Dev-only: Simulate getting a feed without actually doing so, so as to not distort the web site stats

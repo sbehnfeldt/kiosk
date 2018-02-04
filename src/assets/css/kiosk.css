@@ -73,19 +73,19 @@ td input[type=checkbox] {
    height: 100%;
 }
 
-#updates div.panel {
+#updates article.panel {
 }
 
-#updates div.panel-heading {
+#updates header.panel-heading {
    padding: .5em .5em;
 }
 
-#updates div.panel-heading h4 {
+#updates header.panel-heading h4 {
    margin: 0;
 }
 
-#updates div.panel-body p {
-   display: none;
+#updates section.panel-body p {
+   /*display: none;*/
    padding: .1em .5em;
    margin-bottom: 0;
 }

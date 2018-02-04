@@ -269,36 +269,6 @@
     }
 
 
-// Display the next announcement in the Announcements panel
-    function nextAnnouncement() {
-
-        $.ajax( {
-            'url' : 'get.php',
-            'type': 'get',
-            'data': 'announcement',
-
-            'dataType': 'json',
-            'success' : function ( json, textStatus, jqXHR ) {
-                if ( json.error ) {
-                    console.log( "Error: " + json.message );
-                } else {
-                    //console.log( "Success: " + json.src.length );
-                    if ( json.src.length ) {
-                        displayAnnouncements( json.src );
-                    } else {
-                        //console.log( "No announcements" );
-                        nextImage( 0 );
-                    }
-
-                }
-            },
-            'error'   : function ( jqXHR, textStatus, errorThrown ) {
-                console.log( textStatus + ' : ' + errorThrown );
-                displayImages();
-            }
-        } );
-    }
-
 
 // Advance the clock
     function tick() {

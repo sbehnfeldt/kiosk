@@ -15,14 +15,14 @@
         <!-- Daily Class Updates -->
         <div class="col-sm-6" id="updates">
             {% for panel in panels %}
-                <div class="panel panel-default" data-tag="{{ panel.tag }}">
-                    <div class="panel-heading">
+                <article class="panel panel-default" data-tag="{{ panel.tag }}">
+                    <header class="panel-heading">
                         <h4>{{ panel.title }}</h4>
-                    </div>
-                    <div class="panel-body">
+                    </header>
+                    <section class="panel-body">
                         <p>{{ panel.content }}</p>
-                    </div>
-                </div>
+                    </section>
+                </article>
             {% endfor %}
         </div>
 
