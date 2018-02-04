@@ -17,5 +17,6 @@ $config   = json_decode(file_get_contents('../config.json'), true);
 $template = $twig->loadTemplate('config.html.twig');
 exit($template->render([
     'cache'  => false,
-    'panels' => $config[ 'panels' ]
+    'panels' => $config[ 'panels' ],
+    'webroot' => $config[ 'webroot' ]
 ]));
