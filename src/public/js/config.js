@@ -22,7 +22,7 @@
                     "success" : function () {
                         console.log( "Success" );
                     },
-                    "error"   : function (xhr) {
+                    "error"   : function ( xhr ) {
                         console.log( xhr );
                         alert( "Error updating config file" );
                     }
@@ -51,10 +51,12 @@
                     },
 
                     "dataType": "json",
-                    "success" : function () {
+                    "success" : function ( json ) {
+                        console.log( json );
                         console.log( "Success" );
                     },
-                    "error"   : function () {
+                    "error"   : function ( xhr ) {
+                        console.log( xhr );
                         alert( "Error updating config file" );
                     }
                 } );
