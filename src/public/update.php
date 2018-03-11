@@ -2,7 +2,7 @@
 ini_set('error_log', '../logs/php_errors.log');
 
 
-$config = file_get_contents( '../config.json');
+$config = file_get_contents('../config.json');
 $json   = json_decode($config, true);
 
 if ('dev' == $_GET[ 'name' ]) {
@@ -17,7 +17,7 @@ for ($i = 0; $i < count($json[ 'panels' ]); $i++) {
 }
 
 
-$f = fopen( '../config.json', 'w');
+$f = fopen('../config.json', 'w');
 fwrite($f, json_encode($json));
 fclose($f);
 
